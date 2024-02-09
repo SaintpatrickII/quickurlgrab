@@ -16,9 +16,20 @@ url_path = "https://www.ice.com/publicdocs/clear_europe/irmParameters/harmonized
 
 url_for_reuse = f"https://www.ice.com/publicdocs/clear_europe/irmParameters/harmonized/ENERGY_MARGIN_SCANNING_{date_value}.CSV"
 
-resp = requests.get(url_path)
-by = resp.content
-df = pd.read_csv(BytesIO(by))
-print(df.head())
-date_value = 1
-df.to_csv(f"/Users/patrick/Desktop/stonks/{date_value}-report.csv")
+def read_url_to_csv(path):
+    resp = requests.get(path)
+    by = resp.content
+    csv_object = BytesIO(by)
+    print(type(csv_object))
+    return csv_object
+
+read_url_to_csv(url_path)
+
+
+
+# resp = requests.get(url_path)
+# by = resp.content
+# df = pd.read_csv(BytesIO(by))
+# print(df.head())
+# date_value = 1
+# df.to_csv(f"/Users/patrick/Desktop/stonks/{date_value}-report.csv")
